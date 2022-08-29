@@ -16,27 +16,24 @@
   <widget class="QPushButton" name="browse">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>80</y>
-     <width>100</width>
-     <height>20</height>
+     <x>20</x>
+     <y>20</y>
+     <width>110</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
     <string>Chose Directory</string>
    </property>
   </widget>
-  <widget class="QLabel" name="file_name">
+  <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>250</width>
-     <height>20</height>
+     <x>160</x>
+     <y>20</y>
+     <width>220</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
  </widget>
