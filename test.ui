@@ -13,27 +13,30 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="file_name">
+  <widget class="QPushButton" name="browse">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>80</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Chose Directory</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="file_name">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>80</y>
-     <width>251</width>
+     <width>250</width>
      <height>20</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QPushButton" name="browse">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>80</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
-   </property>
    <property name="text">
-    <string>Browse</string>
+    <string/>
    </property>
   </widget>
  </widget>
