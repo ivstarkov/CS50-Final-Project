@@ -1,10 +1,13 @@
+from msilib.schema import Directory
 import os
 import re
 
+directory = r"D:\Test_folder"
 
-def analyze(dir):
 
-    f_list = os.listdir(dir)
+def analyze(directory):
+
+    f_list = os.listdir(directory)
     remove_list = []
 
     for i, name in enumerate(f_list):
@@ -21,7 +24,7 @@ def analyze(dir):
                     if s_name == f_list[i + j]:
 
                         # size comparison ==========================
-                        if os.path.getsize(dir + "\\" + name) == os.path.getsize(dir + "\\" + f_list[i + j]):     
+                        if os.path.getsize(directory + "\\" + name) == os.path.getsize(directory + "\\" + f_list[i + j]):     
                             remove_list.append(name)
                             removed = True
                 except:
@@ -29,23 +32,20 @@ def analyze(dir):
 
             # If nothing was removed, just rename
             if not removed:
-                os.rename(dir + "\\" + name, dir + "\\" + s_name)
+                os.rename(directory + "\\" + name, directory + "\\" + s_name)
     
     return remove_list
 
 
-def remove(dir, remove_list):
+def remove(directory, remove_list):
     for name in remove_list:
-        os.remove(dir + "\\" + name)
+        os.remove(directory + "\\" + name)
 
 
 def main():
-    remove_list = analyze(dir)
+
+    remove_list = analyze(directory)
     remove(remove_list)
-
-
-
-
 
 
 if __name__ == "__main__":

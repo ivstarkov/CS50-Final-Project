@@ -1,43 +1,46 @@
-from PyQt5.QtWidgets import * 
-from PyQt5 import QtCore
-from PyQt5 import QtGui
 import sys
-import time
-  
-  
-class Window(QMainWindow):
+from PyQt5.QtWidgets import (QWidget, QApplication, QPushButton, QSlider,
+    QVBoxLayout, QMessageBox)
+from PyQt5.QtCore import Qt
+
+
+class QButtonExample(QWidget):
     def __init__(self):
         super().__init__()
-  
-        # set the title
-        self.setWindowTitle("Close")
-  
-        # setting  the geometry of window
-        self.setGeometry(0, 0, 400, 300)
-  
-        # creating a label widget
-        self.label = QLabel("Icon is set", self)
-  
-        # moving position
-        self.label.move(100, 100)
-  
-        # setting up border
-        self.label.setStyleSheet("border: 1px solid black;")
-  
-        # show all the widgets
-        self.show()
-  
-        # waiting for 2 second
-        time.sleep(2)
-  
-        # closing the window
-        self.close()
-  
-# create pyqt5 app
-App = QApplication(sys.argv)
-  
-# create the instance of our Window
-window = Window()
-  
-# start the app
-sys.exit(App.exec())
+
+        self.initUI()
+
+
+    def initUI(self):
+        self.setGeometry(300, 300, 200, 150)
+        self.button = QPushButton(self, text="Ты не сможешь на меня нажать!")
+        self.button.setEnabled(False)
+        self.button.clicked.connect(self.handleButton)
+
+        slider = QSlider(Qt.Horizontal, self)
+        slider.setFocusPolicy(Qt.NoFocus)
+        slider.setGeometry(30, 40, 100, 30)
+        slider.valueChanged[int].connect(self.changeValue)
+
+        boxLayout = QVBoxLayout(self)
+        # boxLayout.addStretch(1)
+        boxLayout.addWidget(self.button)
+        boxLayout.addWidget(slider)
+
+
+    def changeValue(self, value):
+        if value > 50:
+            self.button.setEnabled(True)
+        else:
+            self.button.setEnabled(False)
+
+    def handleButton(self):
+        QMessageBox.information(None, 'Сообщение от программы', "Да ладно! у тебя получилось!")
+
+
+if __name__ == '__main__':
+
+    app = QApplication(sys.argv)
+    myApplication = QButtonExample()
+    myApplication.show()
+    sys.exit(app.exec_())
