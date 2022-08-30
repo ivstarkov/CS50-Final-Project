@@ -1,48 +1,32 @@
-#!/usr/bin/env python
-#-*- coding: utf-8 -*-
-
 import sys
-from PyQt4.Qt import *
+from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QDialog, QApplication, QFileDialog, QPushButton
+from PyQt6.uic import loadUi
 
-class MyPopup(QWidget):
+
+
+class MainWindow(QDialog):
     def __init__(self):
-        QWidget.__init__(self)
+        super(MainWindow, self).__init__()
+        loadUi(r"main_window.ui", self)
+        self.delete_btn.clicked.connect(lambda:message_window.show())
 
-    def paintEvent(self, e):
-        dc = QPainter(self)
-        dc.drawLine(0, 0, 100, 100)
-        dc.drawLine(100, 0, 0, 100)
 
-class MainWindow(QMainWindow):
-    def __init__(self, *args):
-        QMainWindow.__init__(self, *args)
-        self.cw = QWidget(self)
-        self.setCentralWidget(self.cw)
-        self.btn1 = QPushButton("Click me", self.cw)
-        self.btn1.setGeometry(QRect(0, 0, 100, 30))
-        self.connect(self.btn1, SIGNAL("clicked()"), self.doit)
-        self.w = None
+class MessageWindow(QDialog):
+    def __init__(self):
+        super(MessageWindow, self).__init__()
+        loadUi(r"message_window.ui", self)
+        self.ok_btn.clicked.connect(lambda:self.close())
 
-    def doit(self):
-        print "Opening a new popup window..."
-        self.w = MyPopup()
-        self.w.setGeometry(QRect(100, 100, 400, 200))
-        self.w.show()
 
-class App(QApplication):
-    def __init__(self, *args):
-        QApplication.__init__(self, *args)
-        self.main = MainWindow()
-        self.connect(self, SIGNAL("lastWindowClosed()"), self.byebye )
-        self.main.show()
 
-    def byebye( self ):
-        self.exit(0)
+app = QApplication([])
 
-def main(args):
-    global app
-    app = App(args)
-    app.exec_()
+message_window = MessageWindow()
+main_window = MainWindow()
 
-if __name__ == "__main__":
-    main(sys.argv)
+
+main_window.show()
+
+
+sys.exit(app.exec())
