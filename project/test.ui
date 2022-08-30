@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Duplicate Remover</string>
   </property>
-  <widget class="QPushButton" name="browse">
+  <widget class="QPushButton" name="browse_btn">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -50,25 +50,32 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>57</y>
-     <width>221</width>
-     <height>16</height>
+     <y>50</y>
+     <width>118</width>
+     <height>19</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>8</pointsize>
+     <kerning>true</kerning>
     </font>
    </property>
    <property name="text">
     <string>Include Subfolders</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="analyze_btn">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>250</y>
+     <y>260</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -82,11 +89,11 @@
     <string>Analyze</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="delete_btn">
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>250</y>
+     <y>260</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -104,13 +111,41 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
-     <width>118</width>
-     <height>3</height>
+     <y>65</y>
+     <width>381</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>361</width>
+     <height>151</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Files to be Removed:</string>
    </property>
   </widget>
  </widget>
