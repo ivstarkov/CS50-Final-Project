@@ -2,11 +2,8 @@ import os
 import re
 
 
-dir = r"D:\Test_folder"
-
-
 def analyze(dir):
-    
+
     f_list = os.listdir(dir)
     remove_list = []
 
@@ -37,14 +34,12 @@ def analyze(dir):
     return remove_list
 
 
-def remove(remove_list):
+def remove(dir, remove_list):
     for name in remove_list:
         os.remove(dir + "\\" + name)
 
 
-
 def main():
-    
     remove_list = analyze(dir)
     remove(remove_list)
 

@@ -1,33 +1,48 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 import sys
+from PyQt4.Qt import *
 
+class MyPopup(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+
+    def paintEvent(self, e):
+        dc = QPainter(self)
+        dc.drawLine(0, 0, 100, 100)
+        dc.drawLine(100, 0, 0, 100)
 
 class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args):
+        QMainWindow.__init__(self, *args)
+        self.cw = QWidget(self)
+        self.setCentralWidget(self.cw)
+        self.btn1 = QPushButton("Click me", self.cw)
+        self.btn1.setGeometry(QRect(0, 0, 100, 30))
+        self.connect(self.btn1, SIGNAL("clicked()"), self.doit)
+        self.w = None
 
-        self.setWindowTitle("My App")
+    def doit(self):
+        print "Opening a new popup window..."
+        self.w = MyPopup()
+        self.w.setGeometry(QRect(100, 100, 400, 200))
+        self.w.show()
 
-        self.label = QLabel()
+class App(QApplication):
+    def __init__(self, *args):
+        QApplication.__init__(self, *args)
+        self.main = MainWindow()
+        self.connect(self, SIGNAL("lastWindowClosed()"), self.byebye )
+        self.main.show()
 
-        self.input = QLineEdit()
-        self.input.textChanged.connect(self.label.setText)
+    def byebye( self ):
+        self.exit(0)
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.input)
-        layout.addWidget(self.label)
+def main(args):
+    global app
+    app = App(args)
+    app.exec_()
 
-        container = QWidget()
-        container.setLayout(layout)
-
-        # Устанавливаем центральный виджет Window.
-        self.setCentralWidget(container)
-
-
-app = QApplication(sys.argv)
-
-window = MainWindow()
-window.show()
-
-app.exec()
+if __name__ == "__main__":
+    main(sys.argv)

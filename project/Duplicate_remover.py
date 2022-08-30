@@ -10,7 +10,7 @@ class MainWindow(QDialog):
     def __init__(self):
 
         super(MainWindow, self).__init__()
-        loadUi(r"test.ui", self)
+        loadUi(r"main_window.ui", self)
         
         self.browse_btn.clicked.connect(self.browse)
         self.analyze_btn.clicked.connect(self.analyze)
@@ -29,12 +29,14 @@ class MainWindow(QDialog):
 
     def analyze(self):
         global to_remove
-        to_remove = deleting.analyze(dir)  
-        self.listWidget.addItems(to_remove)
+        if to_remove := deleting.analyze(dir):
+            self.listWidget.addItems(to_remove)
+        else:
+            self.listWidget.addItems(["There are no duplicates to remove in current directory"])
 
 
     def delete(self):
-        deleting.remove(to_remove)
+        deleting.remove(dir, to_remove)
 
 
         
