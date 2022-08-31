@@ -11,6 +11,7 @@ class MainWindow(QDialog):
         loadUi(r"main_window.ui", self)
         self.directory = ""
         self.remove_list = []
+        self.rename_list = []
         self.initUI()
 
 
@@ -36,7 +37,7 @@ class MainWindow(QDialog):
 
 
     def analyze(self):
-        self.remove_list = analyze(self.directory)
+        self.remove_list, self.rename_list = analyze(self.directory)
         if self.remove_list:
             self.listWidget.addItems(self.remove_list)
             self.delete_btn.setEnabled(True)
@@ -46,6 +47,7 @@ class MainWindow(QDialog):
 
     def delete(self):
         remove(self.directory, self.remove_list)
+        rename(self.directory, self.rename_list)
         self.listWidget.clear()
         QMessageBox.information(None, "Done!", "Duplicate Files were Deleted ")
 
