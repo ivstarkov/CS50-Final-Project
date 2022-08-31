@@ -1,6 +1,5 @@
 import sys
-import deleting
-from PyQt6 import QtWidgets
+from deleting import analyze, remove
 from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox, QFileDialog
 from PyQt6.uic import loadUi
 
@@ -10,6 +9,8 @@ class MainWindow(QDialog):
     def __init__(self):
         super(MainWindow, self).__init__()
         loadUi(r"main_window.ui", self)
+        self.directory = ""
+        self.remove_list = []
         self.initUI()
 
 
@@ -24,30 +25,25 @@ class MainWindow(QDialog):
 
 
     def browse(self): 
-        global directory
-        if directory := QFileDialog.getExistingDirectory(self, "Chose Directory", r"D:\Games", QFileDialog.Option.DontUseNativeDialog):
-            self.dir_name.setText(directory)
+        self.directory = QFileDialog.getExistingDirectory(self, "Chose Directory", "C:\\", QFileDialog.Option.DontUseNativeDialog)
+        if self.directory:
+            self.dir_name.setText(self.directory)
             self.analyze_btn.setEnabled(True)
 
 
     def analyze(self):
-        global remove_list
-        if remove_list := deleting.analyze(directory):
-            self.listWidget.addItems(remove_list)
+        self.remove_list = analyze(self.directory)
+        if self.remove_list:
+            self.listWidget.addItems(self.remove_list)
             self.delete_btn.setEnabled(True)
         else:
             self.listWidget.addItem("There are no duplicates to remove in current directory")
 
 
     def delete(self):
-        deleting.remove(directory, remove_list)
+        remove(self.directory, self.remove_list)
         self.listWidget.clear()
         QMessageBox.information(None, "Done!", "Duplicate Files were Deleted ")
-        
-
-       
-
-
 
 
 

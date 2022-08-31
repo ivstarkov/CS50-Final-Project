@@ -1,46 +1,37 @@
 import sys
-from PyQt5.QtWidgets import (QWidget, QApplication, QPushButton, QSlider,
-    QVBoxLayout, QMessageBox)
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore    import *
+from PyQt5.QtGui     import *
 
-
-class QButtonExample(QWidget):
-    def __init__(self):
+class CreatePage(QWidget):
+    def __init__(self, parent=None):
         super().__init__()
-
         self.initUI()
 
-
     def initUI(self):
-        self.setGeometry(300, 300, 200, 150)
-        self.button = QPushButton(self, text="Ты не сможешь на меня нажать!")
-        self.button.setEnabled(False)
-        self.button.clicked.connect(self.handleButton)
+        self.homeBtn = QPushButton("Home") 
 
-        slider = QSlider(Qt.Horizontal, self)
-        slider.setFocusPolicy(Qt.NoFocus)
-        slider.setGeometry(30, 40, 100, 30)
-        slider.valueChanged[int].connect(self.changeValue)
+        self.frontLabel = QLabel("Front") 
+        self.frontLabel.setFont(QFont("Decorative", 20))
+        self.frontEdit = QTextEdit(placeholderText="frontEdit") 
+        self.frontEdit.setFont(QFont("Decorative", 11))
 
-        boxLayout = QVBoxLayout(self)
-        # boxLayout.addStretch(1)
-        boxLayout.addWidget(self.button)
-        boxLayout.addWidget(slider)
+        self.backLabel = QLabel("Back") 
+        self.backLabel.setFont(QFont("Decorative", 20))
+        self.backEdit = QTextEdit(placeholderText="backEdit") 
+        self.backEdit.setFont(QFont("Decorative", 11))
 
+        grid = QGridLayout()
+        grid.addWidget(self.homeBtn,    0, 0, alignment=Qt.AlignTop | Qt.AlignLeft)
+        grid.addWidget(self.frontLabel, 1, 0, alignment=Qt.AlignCenter)
+        grid.addWidget(self.frontEdit,  2, 0)
+        grid.addWidget(self.backLabel,  3, 0, alignment=Qt.AlignCenter)
+        grid.addWidget(self.backEdit,   4, 0)
 
-    def changeValue(self, value):
-        if value > 50:
-            self.button.setEnabled(True)
-        else:
-            self.button.setEnabled(False)
+        self.setLayout(grid)
 
-    def handleButton(self):
-        QMessageBox.information(None, 'Сообщение от программы', "Да ладно! у тебя получилось!")
-
-
-if __name__ == '__main__':
-
+if __name__=="__main__":
     app = QApplication(sys.argv)
-    myApplication = QButtonExample()
-    myApplication.show()
+    myapp = CreatePage()
+    myapp.show()
     sys.exit(app.exec_())

@@ -2,7 +2,7 @@ from msilib.schema import Directory
 import os
 import re
 
-directory = r"D:\Test_folder"
+
 
 
 def analyze(directory):
@@ -22,7 +22,6 @@ def analyze(directory):
 
                 try: # try-except to avoid out of index error
                     if s_name == f_list[i + j]:
-
                         # size comparison ==========================
                         if os.path.getsize(directory + "\\" + name) == os.path.getsize(directory + "\\" + f_list[i + j]):     
                             remove_list.append(name)
@@ -42,11 +41,13 @@ def remove(directory, remove_list):
         os.remove(directory + "\\" + name)
 
 
-def main():
 
+
+
+def main(directory):
     remove_list = analyze(directory)
-    remove(remove_list)
+    remove(directory, remove_list)
 
 
 if __name__ == "__main__":
-    main()
+    main(r"D:\Test_folder")
