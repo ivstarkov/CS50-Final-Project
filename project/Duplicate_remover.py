@@ -1,6 +1,6 @@
 import sys
-from deleting import analyze, remove
-from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox, QFileDialog
+from deleting import analyze, remove, rename
+from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox, QFileDialog, QLineEdit
 from PyQt6.uic import loadUi
 
 
@@ -25,9 +25,13 @@ class MainWindow(QDialog):
 
 
     def browse(self): 
-        self.directory = QFileDialog.getExistingDirectory(self, "Chose Directory", "C:\\", QFileDialog.Option.DontUseNativeDialog)
+        path = self.dir_name.text()
+        if not path:
+            path = "C:\\"
+        self.directory = QFileDialog.getExistingDirectory(self, "Chose Directory", path, QFileDialog.Option.DontUseNativeDialog)
         if self.directory:
             self.dir_name.setText(self.directory)
+
             self.analyze_btn.setEnabled(True)
 
 
