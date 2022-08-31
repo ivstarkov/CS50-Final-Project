@@ -3,8 +3,6 @@ import os
 import re
 
 
-
-
 def analyze(directory):
 
     f_list = os.listdir(directory)
