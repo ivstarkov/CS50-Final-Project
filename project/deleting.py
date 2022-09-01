@@ -23,7 +23,8 @@ def analyze(directory):
                     if s_name == strip(f_list[i + j]):
                         # size comparison ==========================
                         if os.path.getsize(directory + "\\" + name) == os.path.getsize(directory + "\\" + f_list[i + j]):     
-                            remove_list.append(name)
+                            if name not in remove_list:
+                                remove_list.append(name)
                             removed = True
                 except:
                     break
