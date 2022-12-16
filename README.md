@@ -1,10 +1,14 @@
 - 👋 Hi, I’m @ivstarkov
-- 👀 I’m switching to IT 
-- 🌱 I’m currently learning cs50
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+	An aspiring software developer with a solid engineering background.
 
-<!---
-ivstarkov/ivstarkov is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+	With a solid math and science foundation through a master's degree in 
+	data systems engineering, I achieved outstanding success in my former 
+	engineering field of work. Now I want to progress in information technology 
+	- the frontier of progress.
+
+	Proven by results ability in Self-education, continuous development, and 
+	the highest level of responsibility, backed with
+	gained hands-on experience and knowledge in Data Structures and 
+	Algorithms after completing Harvard Computer Science and IBM Data Science 
+	certification programs with Honor, looking for an opportunity to apply 
+	my knowledge and skills in programming at your company
